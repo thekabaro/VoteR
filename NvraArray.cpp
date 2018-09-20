@@ -5,25 +5,40 @@ using namespace std;
 
 // constructs array with default capacity
 NvraArray::NvraArray() {
-	// FIXME
+	NvraRecord* recordArray = new NvraRecord[DEFAULT_ARRAY_CAPACITY];
+	data = recordArray;
 }
 
 // constructs array with specified capacity
 NvraArray::NvraArray(int capacity) {
-	// FIXME
+	this->capacity = capacity;
+	NvraRecord* recordArray = new NvraRecord[capacity];
+	data = recordArray;
 }
 
 // frees array space as object is deleted
 NvraArray::~NvraArray() {
-	// FIXME
+	delete []data;
 }
 
 // adds record, increments size, doubles capacity as necessary
 void NvraArray::add(NvraRecord* record) {
-	// FIXME
+	if (capacity < size + 1) {
+		NvraRecord* myNewRecordArray = new NvraRecord[capacity * 2];
+		capacity *= 2;
+		for (int i = 0; i < size; i++) {
+			myNewRecordArray[i] = data[i];
+		}
+		NvraRecord* temp = data;
+		data = myNewRecordArray;
+		delete[] temp;
+		temp = NULL;
+	}
+	data[size] = *record;
+	size++;
 }
 
 // returns (copy of) record at index
 NvraRecord NvraArray::get(int index) {
-	// FIXME
+	return data[index];
 }
