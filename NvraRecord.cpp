@@ -1,29 +1,46 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 #include "NvraRecord.h"
 
 // overloaded output operator that sends one formatted record to ostream
 ostream& operator<<(std::ostream& os, const NvraRecord& record) {
-	// FIXME
+	int numCounter = 0;
+	int strCounter = 0;
+	for (int i = 0; i < 23; i++) {
+		if (i == 3 || i == 11 || i == 12) {
+			os << record.strings[strCounter];
+			strCounter++;
+		}
+		else {
+			os << record.nums[numCounter];
+			numCounter++;
+		}
+		os << ';';
+	}
+	os << record.nums[20];
+	return os;
 }
 
 // puts num in array, increments counter
 void NvraRecord::addNum(int num) {
-	// FIXME
+	nums[numCtr] = num;
+	numCtr++;
 }
 
 // puts string in array, increments counter
 void NvraRecord::addString(string string) {
-	// FIXME
+	strings[strCtr] = string;
+	strCtr++;
 }
 
 // returns (copy of) num at index in array
 int NvraRecord::getNum(int index) {
-	// FIXME
+	return nums[index];
 }
 
 // returns (copy of) string at index in array
 string NvraRecord::getString(int index) {
-	// FIXME
+	return strings[index];
 }
