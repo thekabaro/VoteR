@@ -4,8 +4,8 @@
 #include <iostream>
 #include "Exceptions.h"
 
-const int MAX_NUMS = 21;					// the maximum numeric fields in each record
-const int MAX_STRINGS = 3;					// the maximum string fields in each record
+const int MAX_NUMS = 21;					                    // the maximum numeric fields in each record
+const int MAX_STRINGS = 3;					                    // the maximum string fields in each record
 
 class NvraRecord {
 
