@@ -15,7 +15,6 @@ int main()
 	int lineNumber = 1;
 	bool duplicateFound = false;
 	bool negativeFound = false;
-	int currentDataNum = 0;
 	TemplatedArray<NvraRecord> myNvraArray;
 
 	// Ignore headers
@@ -77,12 +76,11 @@ int main()
 
 		// Add record to NvraArray
 		myNvraArray.add(currentRecord);
-		currentDataNum++;
 	}
 
 	// Print out valid lines backwards
-	for (int i = currentDataNum - 1; i >= 0; i--) {
-		cout << myNvraArray.get(i);
+	for (int i = 0; i < myNvraArray.getSize(); i++) {
+		cout << myNvraArray[i];
 		cout << endl;
 	}
 
