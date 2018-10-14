@@ -7,6 +7,8 @@ using namespace std;
 #include "NvraRecord.h"
 #include "TemplatedArray.h"
 #include "Exceptions.h"
+#include "Search.h"
+#include "NvraComparator.h"
 
 int main()
 {
