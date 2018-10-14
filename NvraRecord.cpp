@@ -3,7 +3,6 @@
 using namespace std;
 
 #include "NvraRecord.h"
-#include "Exceptions.h"
 
 // overloaded output operator that sends one formatted record to ostream
 ostream& operator<<(std::ostream& os, const NvraRecord& record) {
@@ -43,7 +42,7 @@ void NvraRecord::addString(string string) {
 }
 
 // returns (copy of) num at index in array
-unsigned int NvraRecord::getNum(unsigned int index) {
+unsigned int NvraRecord::getNum(unsigned int index) const {
 	if (index >= MAX_NUMS) {
 		throw new ExceptionIndexOutOfRange();
 	}
@@ -51,7 +50,7 @@ unsigned int NvraRecord::getNum(unsigned int index) {
 }
 
 // returns (copy of) string at index in array
-string NvraRecord::getString(unsigned int index) {
+string NvraRecord::getString(unsigned int index) const {
 	if (index >= MAX_STRINGS) {
 		throw new ExceptionIndexOutOfRange();
 	}
