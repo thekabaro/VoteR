@@ -23,8 +23,8 @@ public:
 	void addString(std::string string);		                    // puts string in array, increments counter
 
 	// the following methods must throw new ExceptionIndexOutOfRange if index is too large
-	unsigned int getNum(unsigned int index);					// returns (copy of) num at index in array
-	std::string getString(unsigned int index);		            // returns (copy of) string at index in array
+	unsigned int getNum(unsigned int index) const;			    // returns (copy of) num at index in array
+	std::string getString(unsigned int index) const;		    // returns (copy of) string at index in array
 	void setNum(unsigned int num, unsigned int index);          // sets nums[index] to num, doesn't change counter
 	void setString(std::string string, unsigned int index);     // sets strings[index] to string, doesn't change counter
 };
