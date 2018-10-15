@@ -20,7 +20,23 @@ long long binarySearch(const T& item, const TemplatedArray<T>& array, const Comp
 		long long mid = (low + high) / 2;
 		int result = comparator.compare(array[mid], item);
 		if (result == 0) {
-			return mid;
+
+			// return 1st instance
+			// ---------------------------------------------------
+
+			if ((mid > 0) && (comparator.compare(array[mid - 1], item) == 0)) {
+				mid--;
+				while (mid > 0 && comparator.compare(array[mid - 1], item) == 0) {
+					mid--;
+				}
+				return mid;
+			}
+			else {
+				return mid;
+			}
+
+			// ---------------------------------------------------
+
 		}
 		else if (result == 1) {
 			high = mid - 1;
