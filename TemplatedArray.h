@@ -164,7 +164,7 @@ unsigned long TemplatedArray<T>::getSize() const {
 	return size;
 }
 
-// returns (reference to) item at index
+// returns (copy of) item at index
 template<typename T>
 T TemplatedArray<T>::operator[](unsigned long index) const {
 	if (index >= size) {
