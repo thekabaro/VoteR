@@ -9,7 +9,13 @@
 template <typename T>
 long long binarySearch(const T& item, const TemplatedArray<T>& array, const Comparator<T>& comparator) {
 	long long low = 0;
-	long long high = array.getSize();
+	long long high;
+	if (array.getSize() != 0) {
+		high = array.getSize() - 1;
+	}
+	else {
+		return -1;
+	}
 	while (low <= high) {
 		long long mid = (low + high) / 2;
 		int result = comparator.compare(array[mid], item);
