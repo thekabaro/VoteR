@@ -24,8 +24,8 @@ void Sorter<T>::swap(TemplatedArray<T>& array, long long i, long long j) {
 template <typename T>
 void Sorter<T>::quickSort(TemplatedArray<T>& array, long long left, long long right, const Comparator<T>& comparator) {
 	if (left < right) {
-		long long pivot = (left + right) / 2;
-		long long i = left - 1;
+		long long int pivot = (left + right) / 2;
+		long long int i = left - 1;
 		long long j = right + 1;
 		do {
 			do {
