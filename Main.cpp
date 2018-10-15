@@ -120,6 +120,8 @@ int main()
 	NvraComparator comparator(0);
 	sorter.sort(myNvraArray, comparator);
 
+	int colSorted = 0;
+
 	// data manipulation loop
 	while (true) {
 		string userInput;
@@ -140,9 +142,90 @@ int main()
 			}
 			NvraComparator comparator(sortField);
 			sorter.sort(myNvraArray, comparator);
+			colSorted = sortField;
 		}
 		else if (userInput == "f") {
+			int sortField;
+			cout << "Enter search field (0-23): ";
+			cin >> sortField;
+			if (sortField < 0 || sortField > 23) {
+				continue;
+			}
+			// string column
+			if (sortField == 3 || sortField == 11 || sortField == 12) {
+				string fieldValue;
+				cout << "Enter exact text on which to search: ";
+				getline(cin, fieldValue);
+				if (fieldValue == "") {
+					continue;
+				}
+				NvraRecord* tempRecord = new NvraRecord;
+				if (sortField == 3) {
+					tempRecord->setString(fieldValue, 0);
+				}
+				else if (sortField == 11) {
+					tempRecord->setString(fieldValue, 1);
+				}
+				else {
+					tempRecord->setString(fieldValue, 2);
+				}
+				NvraComparator comparator(sortField);
+				long long result = binarySearch(*tempRecord, myNvraArray, comparator);
+				if (result != -1) {
+					cout << myNvraArray[result] << endl;
+				}
+				else {
+					cout << "NVRA records found: 0." << endl;
+				}
+			}
+			// num column
+			else {
+				long long fieldValue;
+				cout << "Enter non-negative field value: ";
+				cin >> fieldValue;
+				if (fieldValue < 0) {
+					continue;
+				}
+				NvraRecord* tempRecord = new NvraRecord;
+				int actualSortField = 0;
+				for (int i = 0; i < sortField; i++) {
+					if (i == 3 || i == 11 || i == 12) {
+						continue;
+					}
+					actualSortField++;
+				}
+				tempRecord->setNum(fieldValue, actualSortField);
+				NvraComparator comparator(sortField);
+				// binary search
+				if (colSorted == sortField) {
+					unsigned long total = 0;
+					long long result = binarySearch(*tempRecord, myNvraArray, comparator);
+					if (result != -1) {
+						if ((result < myNvraArray.getSize() - 1) && (comparator.compare(myNvraArray[result + 1], *tempRecord) == 0)) {
+							cout << myNvraArray[result] << endl;
+							result++;
+							total++;
+							while ((result < myNvraArray.getSize() - 1) && (comparator.compare(myNvraArray[result], *tempRecord) == 0)) {
+								cout << myNvraArray[result] << endl;
+								result++;
+								total++;
+							}
+							cout << "NVRA records found: " << total << "." << endl;
+						}
+						else {
+							cout << myNvraArray[result] << endl;
+							cout << "NVRA records found: 1." << endl;
+						}
+					}
+					else {
+						cout << "NVRA records found: 0." << endl;
+					}
+				}
+				// linear search
+				else {
 
+				}
+			}
 		}
 		else if (userInput == "q") {
 			cout << "Thanks for using VoteR." << endl;
