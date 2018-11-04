@@ -19,7 +19,7 @@ long long binarySearch(const T& item, const TemplatedArray<T>& array, const Comp
 	long long result = 0;
 	while (low <= high) {
 		long long mid = (low + high) / 2;
-		result = comparator.compare(array[mid], item);
+		long long result = comparator.compare(array[mid], item);
 		if (result == 0) {
 
 			// MODIFIED binary search portion (returns the FIRST array location matching the given item)
