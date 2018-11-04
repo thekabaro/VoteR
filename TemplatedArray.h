@@ -24,7 +24,7 @@ public:
 	T get(unsigned long index) const;				      // returns (copy of) item at index
 	unsigned long getCapacity() const;                    // returns the current capacity of the array
 	unsigned long getSize() const;                        // returns the current number of items in the array
-	T operator[](unsigned long index) const;              // returns (copy of) item at index
+	T& operator[](unsigned long index) const;              // returns (copy of) item at index
 };
 
 // method to double array capacity
@@ -166,7 +166,7 @@ unsigned long TemplatedArray<T>::getSize() const {
 
 // returns (copy of) item at index
 template<typename T>
-T TemplatedArray<T>::operator[](unsigned long index) const {
+T& TemplatedArray<T>::operator[](unsigned long index) const {
 	if (index >= size) {
 		throw new ExceptionIndexOutOfRange();
 	}
