@@ -16,14 +16,13 @@ long long binarySearch(const T& item, const TemplatedArray<T>& array, const Comp
 	else {
 		return -1;
 	}
+	long long result = 0;
 	while (low <= high) {
 		long long mid = (low + high) / 2;
-		int result = comparator.compare(array[mid], item);
+		result = comparator.compare(array[mid], item);
 		if (result == 0) {
 
-			// return 1st instance
-			// ---------------------------------------------------
-
+			// MODIFIED binary search portion (returns the FIRST array location matching the given item)
 			if ((mid > 0) && (comparator.compare(array[mid - 1], item) == 0)) {
 				mid--;
 				while (mid > 0 && comparator.compare(array[mid - 1], item) == 0) {
@@ -34,18 +33,19 @@ long long binarySearch(const T& item, const TemplatedArray<T>& array, const Comp
 			else {
 				return mid;
 			}
-
-			// ---------------------------------------------------
-
 		}
 		else if (result == 1) {
 			high = mid - 1;
+			result = mid;
 		}
 		else {
 			low = mid + 1;
+			result = mid;
 		}
 	}
-	return -1;
+	// if not found, return a negative number corresponding to where in the array it should be inserted
+	result = (result + 1) * -1;
+	return result;
 }
 
 #endif
