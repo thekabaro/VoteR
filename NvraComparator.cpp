@@ -9,6 +9,7 @@ int NvraComparator::compare(const NvraRecord& item1, const NvraRecord& item2) co
 	unsigned int numCtr = 0;
 	unsigned int strCtr = 0;
 	bool isNum;
+	// determine if the column contains a number or a string
 	for (unsigned int i = 0; i <= column; i++) {
 		if (i == column) {
 			if (i == 3 || i == 11 || i == 12) {
@@ -27,6 +28,7 @@ int NvraComparator::compare(const NvraRecord& item1, const NvraRecord& item2) co
 			numCtr++;
 		}
 	}
+	// if the column contains a number
 	if (isNum) {
 		if (item1.getNum(numCtr) < item2.getNum(numCtr)) {
 			return -1;
@@ -38,6 +40,7 @@ int NvraComparator::compare(const NvraRecord& item1, const NvraRecord& item2) co
 			return 1;
 		}
 	}
+	// if the column contains a string
 	else {
 		if (item1.getString(strCtr) < item2.getString(strCtr)) {
 			return -1;
